@@ -1,4 +1,4 @@
-# MIPS-pipelined-Processor
+# MIPS-pipelined-processor
  Course project of computer organization of Beihang University.
 
 ## Intro
