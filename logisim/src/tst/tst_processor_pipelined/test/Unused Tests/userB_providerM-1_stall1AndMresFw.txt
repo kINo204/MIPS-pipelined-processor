@@ -1,0 +1,16 @@
+ori $1, $0, 0x1234          >1 0x1234
+beq $1, $0, label           >0 0x300c
+nop
+ori $1, $0, 0               >1 0
+beq $1, $0, label1          >0 0x301c
+nop
+ori $1, $0, 0x1145
+label1: ori $1, $0, 0x1234  >1 0x1234
+beq $0, $1, label           >0 0x3028
+nop
+ori $1, $0, 0               >1 0
+beq $0, $1, label2          >0 0x3038
+nop
+ori $1, $0, 0x1145
+label2: ori $1, $0, 0x4511  >1 0x4511
+label: ori $1, $0, 0x5414   >1 0x5414

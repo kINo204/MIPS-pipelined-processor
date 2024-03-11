@@ -1,0 +1,4 @@
+jal label           >31 0x3008
+nop
+ori $1, $0, 0x1145
+label: add $1, $0, $ra     >1 0x3008

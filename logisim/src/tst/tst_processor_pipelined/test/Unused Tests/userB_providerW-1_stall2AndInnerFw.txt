@@ -1,0 +1,7 @@
+ori $1, $0, 0x1234  >1 0x1234
+sw $1, 0xc          >0xc 0x1234
+lw $2, 0xc          >2 0x1234
+beq $2, $2, label   >0 0x3018
+nop
+nop
+label: nop

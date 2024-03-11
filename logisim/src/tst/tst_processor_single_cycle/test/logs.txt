@@ -1,0 +1,12 @@
+OK	add_overflow
+OK	add_zero
+OK	beq_regarded
+OK	beq_taken
+OK	j
+OK	lui
+OK	ori_edge
+OK	ori_eqv
+OK	sub_overflow
+OK	sub_zero
+OK	swlw_addr
+OK	swlw_value

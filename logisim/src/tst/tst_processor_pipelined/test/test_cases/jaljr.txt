@@ -1,0 +1,9 @@
+jal label            >31 0x3008
+nop
+j end
+ori $0, $0, 1
+label: ori $0, $0, 2 >0 2
+jr $ra 		     >0 0x3008
+		     >0 0x3018
+		     >0 1
+end: nop

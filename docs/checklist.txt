@@ -1,0 +1,134 @@
+Checklist
+
+1. Rtype
+
+1.1 New ALU Operation
+数据通路：ALU加入新运算
+ALU控制器：选中新运算
+数据有效性：按照R型指令
+详细步骤：
+- <alu.v> 新运算封装进函数 *函数用法复习
+- <alu.v> <assign res => 在预留结果处加上新运算函数
+- <ctl.v> 添加单独指令信号，并加入R型，注意反选
+- <ctl.v> <assign ALUfn = > 添加新运算类型
+- <stlctl.v> 同MainCtrl
+
+1.2 New Imm Operation
+数据通路：ALU加入新运算
+主控制器：强制执行新运算(通过设置ALUfn实现)
+数据有效性：按照I型指令+ALUop强制选中新运算
+详细步骤：
+- <alu.v> 将新运算封装进函数
+- <alu.v> <assign res => 在预留结果处加上新运算函数
+- <ctl.v> 添加单独指令信号，并加入I型，如果与现有指令类型重叠需要反选
+- <ctl.v> <assign ALUfn => 添加新运算类型
+- <stlctl.v> 同MainCtrl
+ 
+1.3 On Condition: Trigger M/D
+数据通路(Stage E)：
+- 添加特殊指令判断sp_instr, 特殊条件判断sp_cmp
+- sp_instr时用sp_cmp代替MUDVstart
+控制器：按照MDTR类型
+数据有效性：
+* 详细步骤：*
+- <mips.v> <EX> 添加sp_instr, sp_cmp生成
+- <mips.v> <ESeg> EMUDVstart改为t_EMUDVstart
+- <mips.v> <EX> 新的wire:EMUDVstart，在特殊指令时使用sp_cmp,否则使用t_EMUDVstart
+- <ctl.v> 添加单独指令信号，并加入Rtype->MDTR，注意反选
+- <ctl.v> <MUDVop = > 特殊指令时选中MUDV某个运算
+- <stlctl.v> 同MainCtrl
+
+1.4 New MUDV Operation
+数据通路：MUDV增加新运算
+控制器：选中新MUDV运算
+数据有效性：按照MDTR类型
+* 详细步骤：*
+- <mudv.v> 在预留结果处添加新运算及时间
+- <ctl.v> 添加单独指令信号，并加入Rtype->MDTR，注意反选
+- <ctl.v> <MUDVop = > 特殊指令时选中MUDV新运算MDSP
+- <stlctl.v> 同<ctl.v>
+
+
+2. Jump/Branch
+
+2.1 Branch(on condition)
+数据通路：通过覆写D级bran控制是否分支
+- always: bran = sp_instr ? 1 : ...
+- cond:   bran = sp_instr ? sp_cmp : ...
+控制器：加入Bran类
+* 详细步骤：*
+
+
+2.2.1 Jump rs(on condition)
+数据通路：通过覆写控制器输出PCsrc控制是否Jump reg
+- always: /(控制器已经生成了Jreg信号)
+- cond:   MainCtrl->t_PCsrc; wire [1:0] PCsrc = sp_instr ? (sp_cmp ? 2'b11 : 2'b00) : t_PCsrc;
+控制器：加入Rtype->JR
+* 详细步骤：*
+
+2.2.2 Jump rt(on condition)
+数据通路：通过覆写D级pcjreg控制跳转至rs/rt
+- pcjreg = sp_instr ? Drdat2 : Drdat1;
+其他同2.2.1
+
+2.3 Link(on condition)
+数据通路：通过覆写控制器输出GRFwen控制是否Link(GRFwen=0已经可以使其不作为生产者引发暂停)
+- always: /(控制器已经生成了GRFwen信号)
+- cond:   MainCtrl->t_GRFwen; wire GRFwen = sp_instr ? sp_cmp : t_GRFwen;
+控制器：在基类型基础上加入JAL中（不必加入Jump）
+其他同原类型
+
+2.4 Nullify delay slot(on NOT condition)
+数据通路：通过覆写D级Dflush控制是否Nullify
+- always NOT: /(默认即不清空延迟槽)
+- cond:   Dflush = sp_instr ? ~bran : 0;(不跳转时清空)
+其他同原类型
+
+
+3. Load/Store
+
+3.1 Load to Specified Register
+数据通路：在W阶段将要写入的寄存器编号按要求进行修改
+控制器：主要控制信号按照对应的Load(LW/LB/LH)即可
+数据有效性：tnew按照Load即可，非数据使用者。暂停控制需要更改以适应更改后的wreg。
+* 详细步骤：*
+- <mips.v> <WSeg> 将W寄存器Wwreg改为t_Wwreg, Wwreg改为新的wire信号
+- <W> 加入在特殊指令时根据条件生成Wwreg（将原信号后置，因为可能有其他位置使用了原信号）
+- <ctl.v> 添加单独指令信号，并加入Load型，按对应类型加入MB/MH/MW，如果与现有指令类型重叠需要反选
+- <stlctl.v> 指令控制部分同<ctl.v>
+- <stlctl.v> <stlHit_rx_X> 每处第二行条件增加：特殊指令时对所有可能进行写入的wreg进行判断
+
+3.2 On Condition: Load
+数据通路：在W阶段根据条件将GRFwen进行修改
+控制器：主要控制信号按照对应的Load(LW/LB/LH)即可
+* 详细步骤：*
+- <mips.v> <WSeg> 将W寄存器WGRFwen改为t_WGRFwen
+- <mips.v> <W> 加入新的WGRFwen信号：
+  - wire WGRFwen = sp_instr ? sp_cmp : t_WGRFwen;
+- <ctl.v> 添加单独指令信号，并加入Load型，按对应类型加入MB/MH/MW，如果与现有指令类型重叠需要反选
+- <stlctl.v> 指令控制部分同<ctl.v>
+
+
+附录：
+新指令的代码描述 = 单指令行为 + 暂停（转发采用覆盖转发/条件转发策略，因而无需修改）
+- 单指令行为：数据通路+（主）控制器
+- 暂停：数据有效性（Tnew，Tuse） + 读写寄存器（rreg1/2, wreg）
+  - 指令作为Provider被判断暂停情况时处于E/M级，因此需要保证E/M级Tnew, wreg, GRFwen信号正确，否则需要特殊处理
+  - 指令作为User被判断暂停情况是处于D级，因此需要保证D级rs, rt正确
+
+注意事项：
+- D级生成sp_instr时应当使用FSopcode/FSfunct（经过暂停判断后D级实际的指令）
+- 注意复习函数，灵活使用函数对组合逻辑进行封装；同时不应滥用函数。
+- 默认添加的运算宏：SP(ALU special operation), ALUFN_SP(Main Control's ALU special operation), MDSP(MUDV special operation)
+
+新增指令测试
+  • 单指令行为
+    ○ A指定数据通路正确工作（功能）Function
+    ○ B未指定数据通路不工作 Function Complement
+  • 转发与暂停行为(USER: C-E, PROVIDER: F-H)(对暂停仅能测试应暂停而为暂停情况，不能测试冗余暂停情况)
+    ○ C接受转发且暂停 user: Forward, Stall
+    ○ D接受转发不暂停 user: Forward, NO Stall
+    ○ E不接受转发不暂停 user: NO Forward, NO Stall
+    ○ F发送转发且暂停 provider: Forward, Stall
+    ○ G发送转发不暂停 provider: Forward, NO Stall
+    ○ H不发送转发不暂停 provider: NO Forward, NO Stall

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/media/shared/SharedFile/ISE Files/components/testcpu/PipelinedProcessor_v5/mips_txt_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="mips_txt" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="2" />
+   <wave_markers>
+      <marker time="134000000" label="" />
+      <marker time="150000000" label="" />
+   </wave_markers>
+   <wvobject fp_name="group105" type="group">
+      <obj_property name="label">CPU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/mips_txt/uut/CPU/pc" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pc[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/i_inst_rdata" type="array" db_ref_id="1">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">i_inst_rdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_inst_rdata[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00ffff</obj_property>
+         <obj_property name="label">Finstr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CPU/erF" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">erF</obj_property>
+         <obj_property name="ObjectShortName">erF</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CPU/ercodeF" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ercodeF[4:0]</obj_property>
+         <obj_property name="ObjectShortName">ercodeF[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CPU/Dinstr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">Dinstr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">Dinstr[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00ffff</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CPU/erD" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">erD</obj_property>
+         <obj_property name="ObjectShortName">erD</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CPU/ercodeD" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ercodeD[4:0]</obj_property>
+         <obj_property name="ObjectShortName">ercodeD[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CPU/Einstr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">Einstr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">Einstr[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00ffff</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CPU/erE" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">erE</obj_property>
+         <obj_property name="ObjectShortName">erE</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CPU/ercodeE" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ercodeE[4:0]</obj_property>
+         <obj_property name="ObjectShortName">ercodeE[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CPU/Minstr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">Minstr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">Minstr[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CPU/erM" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">erM</obj_property>
+         <obj_property name="ObjectShortName">erM</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CPU/ercodeM" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ercodeM[4:0]</obj_property>
+         <obj_property name="ObjectShortName">ercodeM[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CPU/Winstr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">Winstr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">Winstr[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00ffff</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/fixed_macroscopic_pc" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fixed_macroscopic_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">fixed_macroscopic_pc[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/interrupt" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">interrupt</obj_property>
+         <obj_property name="ObjectShortName">interrupt</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#0000ff</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group39" type="group">
+      <obj_property name="label">COP0</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/mips_txt/uut/CoProc0/exl" type="logic" db_ref_id="1">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">exl</obj_property>
+         <obj_property name="ObjectShortName">exl</obj_property>
+         <obj_property name="label">exl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CoProc0/ExcCode" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ExcCode[6:2]</obj_property>
+         <obj_property name="ObjectShortName">ExcCode[6:2]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CoProc0/epc" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">epc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">epc[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00ff00</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CoProc0/im" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">im[15:10]</obj_property>
+         <obj_property name="ObjectShortName">im[15:10]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CoProc0/ip" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ip[15:10]</obj_property>
+         <obj_property name="ObjectShortName">ip[15:10]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CoProc0/ie" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">ie</obj_property>
+         <obj_property name="ObjectShortName">ie</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mips_txt/uut/CoProc0/bd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">bd</obj_property>
+         <obj_property name="ObjectShortName">bd</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

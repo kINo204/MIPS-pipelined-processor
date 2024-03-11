@@ -1,0 +1,4 @@
+ori $1, $0, 0 			>1 0
+j label					>0 0x300c
+ori $2, $0, 3
+label: ori $3, $0, 4	>3 4

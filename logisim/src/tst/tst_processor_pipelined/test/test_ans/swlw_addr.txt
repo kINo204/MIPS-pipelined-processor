@@ -1,0 +1,14 @@
+1 15bb
+2 2bd6
+1f 8
+c 15bb
+0 15bb
+0 15bb
+0 15bb
+3 4
+4 ffff0000
+4 fffffff8
+c 2bd6
+0 2bd6
+2 2bd6
+2 2bd6
