@@ -1,8 +1,6 @@
 # MIPS-pipelined-Processor
  Course project of computer organization of Beihang University.
 
-[TOC]
-
 ## Intro
 
 The project contains approximately 2 types of a MIPS-32 based processor:
