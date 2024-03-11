@@ -1,7 +1,7 @@
 # set paths
 version = open("testversion.txt", 'r')
 src = "..\\src\\" + version.readline().strip() + "\\"
-test = "test\\"
+test = "config\\"
 asms = test + "asms\\"
 marsout = test + "marsout\\"
 mcode = test + "mcode\\"
